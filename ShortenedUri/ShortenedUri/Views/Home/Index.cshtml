@@ -1,17 +1,30 @@
-﻿@{
+﻿@model ShortenedUrlModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
+@using (Html.BeginForm("GenerateShortenedUrl", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.LongUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LongUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LongUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Generate" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
 <div class="row">
-    <div class="col-md-4"><input type="text" placeholder="Paste your URL here" /></div>
-    <div class="col-md-8">Generate</div>
-</div>
-<div class="row">
-    <table>
-        <thead>
-            <tr>
-
-            </tr>
-        </thead>
-    </table>
+    <h1>List URL</h1>
 </div>
