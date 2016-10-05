@@ -37,6 +37,16 @@ namespace ShortenedUri.Controllers
             return View("Index");
         }
 
+        public ActionResult RedirectToLongUrl(string shortUrl)
+        {
+            var shortenedUrl = db.ShortenedUrls.FirstOrDefault(m => m.ShortUrl.EndsWith(shortUrl));
+            if (shortenedUrl != null)
+            {
+                return Redirect(shortenedUrl.LongUrl);
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Shortened Uri Service";
@@ -50,14 +60,6 @@ namespace ShortenedUri.Controllers
 
             return View();
         }
-
-        #region Utilites
-        private string GenerateUniqueUrl()
-        {
-            return string.Empty;
-        }
-
-        #endregion
 
         protected override void Dispose(bool disposing)
         {

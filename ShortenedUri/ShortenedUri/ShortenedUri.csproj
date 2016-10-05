@@ -138,6 +138,10 @@
     <Compile Include="Migrations\201610041358414_InitialCreate.Designer.cs">
       <DependentUpon>201610041358414_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610051506501_AddDeletedField.cs" />
+    <Compile Include="Migrations\201610051506501_AddDeletedField.Designer.cs">
+      <DependentUpon>201610051506501_AddDeletedField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ShortenedUrlModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +197,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610041358414_InitialCreate.resx">
       <DependentUpon>201610041358414_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610051506501_AddDeletedField.resx">
+      <DependentUpon>201610051506501_AddDeletedField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
