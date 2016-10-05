@@ -1,4 +1,5 @@
 ﻿using ShortenedUri.DAL;
+using ShortenedUri.Helpers;
 using ShortenedUri.Models;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,12 @@ namespace ShortenedUri.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO:
                 var entity = new ShortenedUrlModel()
                 {
                     CreatedOn = DateTime.UtcNow,
                     UpdatedOn = DateTime.UtcNow,
                     LongUrl = model.LongUrl,
-                    ShortUrl = GenerateUniqueUrl(),
+                    ShortUrl = Request.Url.Authority + "/" + StringHelper.GenerateUniqueUrl(),
                 };
                 db.ShortenedUrls.Add(entity);
                 db.SaveChanges();
