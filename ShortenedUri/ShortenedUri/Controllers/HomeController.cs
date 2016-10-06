@@ -1,4 +1,5 @@
 ﻿using ShortenedUri.DAL;
+using ShortenedUri.Entities;
 using ShortenedUri.Helpers;
 using ShortenedUri.Models;
 using System;
@@ -19,11 +20,11 @@ namespace ShortenedUri.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult GenerateShortenedUrl([Bind(Include = "LongUrl")] ShortenedUrlModel model)
+        public ActionResult GenerateShortenedUrl(ShortenedUrlCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                var entity = new ShortenedUrlModel()
+                var entity = new ShortenedUrl()
                 {
                     CreatedOn = DateTime.UtcNow,
                     UpdatedOn = DateTime.UtcNow,

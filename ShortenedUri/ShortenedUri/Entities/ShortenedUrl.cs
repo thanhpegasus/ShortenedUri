@@ -2,16 +2,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShortenedUri.Models
+namespace ShortenedUri.Entities
 {
-    public class ShortenedUrlModel
+    public class ShortenedUrl
     {
-        [Required]
         public int ID { get; set; }
         public string ShortUrl { get; set; }
-
-        [Required]
-        [Domain(ErrorMessage = "Only accept URLs from the mydeal.com.au domain or any subdomains")]
         public string LongUrl { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
