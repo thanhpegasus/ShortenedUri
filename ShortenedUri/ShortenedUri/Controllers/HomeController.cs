@@ -15,7 +15,16 @@ namespace ShortenedUri.Controllers
         private ShortenedUriContext db = new ShortenedUriContext();
         public ActionResult Index()
         {
-            return View();
+            var shortenedUrlListModel = new ShortenedUrlListModel();
+
+            shortenedUrlListModel.ShortenedUrlItemModels = db.ShortenedUrls.Select(m => new ShortenedUrlItemModel
+            {
+                ID = m.ID,
+                ShortUrl = m.ShortUrl,
+                LongUrl = m.LongUrl
+            }).ToList();
+
+            return View(shortenedUrlListModel);
         }
 
         [HttpPost]
@@ -29,11 +38,20 @@ namespace ShortenedUri.Controllers
                     CreatedOn = DateTime.UtcNow,
                     UpdatedOn = DateTime.UtcNow,
                     LongUrl = model.LongUrl,
-                    ShortUrl = Request.Url.Authority + "/" + StringHelper.GenerateUniqueUrl(),
+                    ShortUrl = "http://" + Request.Url.Authority + "/" + StringHelper.GenerateUniqueUrl(),
                 };
                 db.ShortenedUrls.Add(entity);
                 db.SaveChanges();
-                RedirectToAction("Index");
+
+                //TODO: should use AutoMapper here
+                var shortenedUrlItemModel = new ShortenedUrlItemModel
+                {
+                    ID = entity.ID,
+                    LongUrl = entity.LongUrl,
+                    ShortUrl = entity.ShortUrl
+                };
+
+                return Json(shortenedUrlItemModel, JsonRequestBehavior.AllowGet);
             }
             return View("Index");
         }

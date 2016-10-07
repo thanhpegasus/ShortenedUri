@@ -1,0 +1,14 @@
+﻿@model ShortenedUrlCreateModel
+
+<form id="generateShortenedUrl" class="form-horizontal" method="post" action="/Home/GenerateShortenedUrl">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LongUrl, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter your URL" } })
+            @Html.ValidationMessageFor(model => model.LongUrl, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2 text-right">
+            <input type="button" value="Generate" id="generateUrl" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

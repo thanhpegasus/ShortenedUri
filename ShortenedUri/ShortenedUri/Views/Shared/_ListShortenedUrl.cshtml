@@ -1,0 +1,18 @@
+﻿@model List<ShortenedUrlItemModel>
+
+<table id="shortenedUrlList" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Short Url</th>
+            <th>Long Url</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_ItemShortenedUrl", item)
+        }
+        
+    </tbody>
+</table>
