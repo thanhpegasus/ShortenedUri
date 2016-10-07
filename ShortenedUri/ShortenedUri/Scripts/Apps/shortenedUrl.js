@@ -1,4 +1,5 @@
 ﻿$(function () {
+    //TODO: should use module pattern
     $('#generateUrl').click(function () {
         var form = $('#generateShortenedUrl');
         if (form.valid()) {
@@ -11,6 +12,7 @@
                 dataType: 'json',
                 success: function (data) {
                     toastr.info('Generate success');
+                    //TODO: should use Knockout, React or Angular to binding data
                     var rowContent =
                         '<tr>' +
                         '<th scope="row">' + data.ID + '</th>' +
